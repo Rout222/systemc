@@ -45,5 +45,6 @@ int sc_main(int argc, char **argv){
 
 /* pra executar
 
+g++ -I$HOME/systemc/include -L$HOME/systemc/lib-linux64/ hello.cpp -o hello -lm -lsystemc
 
 */
