@@ -6,7 +6,8 @@ using namespace sc_core;
 
 SC_MODULE (hello_world) {
 
-	sc_in<bool> a, b;
+	sc_in<bool> a;
+	sc_in<bool> b;
 
 	sc_out<bool> c;
 
@@ -18,7 +19,7 @@ SC_MODULE (hello_world) {
 
 	void executar() {
 		if(a.read() && b.read()){
-			cout << "Hello World" << endl;
+			cout << "Hello World" << endl;	
 			c.write(!c.read());
 		}
 	}
@@ -33,17 +34,19 @@ int sc_main(int argc, char **argv){
 	entrada_a.write(true);
 	entrada_b.write(true);
 
-	sc_start();
 
 	hw.a(entrada_a);
 	hw.b(entrada_b);
 	hw.c(saida_c);
 
+	sc_start();
 	cout << "" << saida_c.read() << endl;
 	return 0;
 }
 
 /* pra executar
+
+export LD_LIBRARY_PATH=$HOME/systemc/lib-linux64
 
 g++ -I$HOME/systemc/include -L$HOME/systemc/lib-linux64/ hello.cpp -o hello -lm -lsystemc
 
